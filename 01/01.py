@@ -7,8 +7,7 @@ def read():
     return df[[0]], df[[1]]
 
 
-def main():
-    # Part 1
+def part_one():
     left_list, right_list = read()
     left_list.columns = right_list.columns = ["Locations"]
     left_list = left_list.sort_values(by="Locations").reset_index(drop=True)
@@ -16,7 +15,10 @@ def main():
     distances = np.abs(right_list - left_list)
     print(f"Total distance: {distances["Locations"].sum()}")
 
-    # Part 2
+
+def part_two():
+    left_list, right_list = read()
+    left_list.columns = right_list.columns = ["Locations"]
     occurances = right_list.groupby(["Locations"]).size()
 
     def find_occurances(x):
@@ -35,4 +37,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    part_one()
+    part_two()
