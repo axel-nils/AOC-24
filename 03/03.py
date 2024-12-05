@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import re
 
+
 def read(file_path):
     with open(file_path, "r") as file:
         data = file.read().replace("\n", "")
@@ -20,9 +21,26 @@ def part_one():
 
 
 def part_two():
-    pass
+    program = read("./03/03.txt")
+
+    do_mul_pattern = r"mul\((?P<X>\d+),(?P<Y>\d+)\)|do\(\)|don't\(\)"
+    instructions = re.finditer(do_mul_pattern, program)
+
+    do = True
+    sum = 0
+    for i in instructions:
+        match i.group(0):
+            case "do()":
+                do = True
+            case "don't()":
+                do = False
+            case _:
+                if do:
+                    sum += int(i.group("X")) * int(i.group("Y"))
+
+    print(f"The sum when consider do() or don't() is: {sum}")
 
 
 if __name__ == "__main__":
     part_one()
-    # part_two()
+    part_two()
