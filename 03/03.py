@@ -38,7 +38,7 @@ def part_two():
                 if do:
                     sum += int(i.group("X")) * int(i.group("Y"))
 
-    print(f"The sum when consider do() or don't() is: {sum}")
+    print(f"The sum when also considering do() or don't() is: {sum}")
 
 
 if __name__ == "__main__":
